@@ -42,5 +42,19 @@
       change_request: "{{ new_change.record.number }}"
   register: change_task
 - debug:
+    msg: "New change has been created : {{ change_task.record.number }} "
+- name: test change
+  snow_record:
+    username: admin
+    password: Ctss-2019
+    instance: dev54625
+    state: present
+    table: change_task
+    data:
+      short_description: "Sample2 Task Creation for Change {{ new_change.record.number }}"
+      description: 'Nishant2 2021| NON PROD Q3 Linux Patching QA'
+      change_request: "{{ new_change.record.number }}"
+  register: change_task
+- debug:
     msg: "New change has been created : {{ change_task.record.number }} "  
   
